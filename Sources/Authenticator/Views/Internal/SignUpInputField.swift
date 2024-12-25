@@ -48,6 +48,12 @@ struct SignUpInputField: View {
                     placeholder: field.placeholder,
                     validator: validator
                 )
+#if os(iOS)
+                .textContentType(.newPassword)
+                .textInputAutocapitalization(.never)
+#elseif os(macOS)
+                .textContentType(.password)
+#endif
             case .date:
                 DatePicker(
                     field.displayedLabel,
